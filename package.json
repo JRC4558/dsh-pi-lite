@@ -55,5 +55,13 @@
     "pi",
     "agent-mode",
     "bundle"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JRC4558/dsh-pi-lite.git"
+  },
+  "homepage": "https://github.com/JRC4558/dsh-pi-lite",
+  "bugs": {
+    "url": "https://github.com/JRC4558/dsh-pi-lite/issues"
+  }
 }

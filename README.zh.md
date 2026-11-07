@@ -11,13 +11,17 @@
 
 ## 安装
 
+分发渠道是 GitHub 仓库，不发布到 npm registry。
+
 ```sh
-npm install dsh-pi-lite
-# 或装进某个 DSH profile：
-dsh plugin --profile <profile> add dsh-pi-lite
+# 直接从仓库装进某个 DSH profile
+dsh plugin --profile <profile> add github:JRC4558/dsh-pi-lite
+
+# 或用 npm
+npm install github:JRC4558/dsh-pi-lite
 ```
 
-然后在会话中选择 `pi-lite` preset。安装脚本会把 skill 复制到 `${DSH_HOME:-~/.dsh}/skills/pi-lite`；如果你用 `--ignore-scripts`，请自行复制 `skills/pi-lite`。
+然后在会话中选择 `pi-lite` preset。仓库已包含构建好的 `lib/`，不需要额外构建。安装脚本会把 skill 复制到 `${DSH_HOME:-~/.dsh}/skills/pi-lite`；如果你用 `--ignore-scripts`，请自行复制 `skills/pi-lite`。
 
 要求：DeepSeek Harness 提供 agent preset 和标准工具包（`dsh-persona`、`dsh-tool-bash`、`dsh-tool-fs`、`dsh-tool-skill`、`dsh-skill-filesystem`、`dsh-tool-web`）以及 `read_image`。模式本身只需要一个 POSIX `bash`；Windows 使用你的 DSH 安装已经提供的 shell 实现。
 

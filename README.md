@@ -11,13 +11,17 @@ A minimal, portable Pi-like mode for [DeepSeek Harness](https://github.com/deeps
 
 ## Install
 
+The GitHub repository is the distribution channel; the package is not published to the npm registry.
+
 ```sh
-npm install dsh-pi-lite
-# or install into a specific DSH profile:
-dsh plugin --profile <profile> add dsh-pi-lite
+# install into a DSH profile directly from the repository
+dsh plugin --profile <profile> add github:JRC4558/dsh-pi-lite
+
+# or with npm
+npm install github:JRC4558/dsh-pi-lite
 ```
 
-Then select the `pi-lite` preset for a session. The install script copies the bundled skill to `${DSH_HOME:-~/.dsh}/skills/pi-lite`; use `--ignore-scripts` only if you plan to copy `skills/pi-lite` yourself.
+Then select the `pi-lite` preset for a session. The package ships its built `lib/`, so the repository works without a build step. The install script copies the bundled skill to `${DSH_HOME:-~/.dsh}/skills/pi-lite`; use `--ignore-scripts` only if you plan to copy `skills/pi-lite` yourself.
 
 Requirements: a DeepSeek Harness build that provides agent presets and the standard tool packages (`dsh-persona`, `dsh-tool-bash`, `dsh-tool-fs`, `dsh-tool-skill`, `dsh-skill-filesystem`, `dsh-tool-web`) plus `read_image`. The mode itself only needs a POSIX `bash`; on Windows use the shell provider your DSH installation already exposes.
 
