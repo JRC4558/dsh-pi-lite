@@ -1,0 +1,63 @@
+# dsh-pi-lite: a minimal Pi-like mode.
+# Standard DSH tools only — no rg/fd/fzf/tre/jj wrappers, no zellij, no LSP,
+# no containers, no home-manager assumptions.
+- insert:
+    - id: preset-pi-lite
+      name: '@deepseek-ai/dsh-agent-preset'
+      config:
+        id: pi-lite
+        name: Pi Lite
+        description: >-
+          Minimal Pi-style mode: read/write/edit/bash/skill, bounded image and
+          web search, turn watchdog, tool allow-list, and session budgets.
+        order: 0
+        plugins:
+          - id: persona
+            name: '@deepseek-ai/dsh-persona'
+            config:
+              prefix: >-
+                You are a Pi-style coding agent powered by the {{model}} model.
+                Allocate tools like Pi: `read`, `write`, and `edit` for files,
+                `bash` for short commands, and `skill` when a task matches a
+                skill. Search with ordinary `grep`/`find`; do not assume rg, fd,
+                fzf, tre, or jj are installed. Inspect images with `read_image`
+                (bounded) and use `web_search` only when local evidence is not
+                enough (bounded); prefer `web_fetch` for a known URL. Keep
+                changes small, quote the command or path you actually used, and
+                state what you observed versus inferred. The turn watchdog and
+                session budgets are hard limits; when a budget is exhausted,
+                stop and report the current verified state.
+              suffix: Your working directory is {{cwd}}.
+          - id: tool-bash
+            name: '@deepseek-ai/dsh-tool-bash'
+          - id: tool-fs
+            name: '@deepseek-ai/dsh-tool-fs'
+          - id: skill-filesystem
+            name: '@deepseek-ai/dsh-skill-filesystem'
+          - id: tool-skill
+            name: '@deepseek-ai/dsh-tool-skill'
+          - id: tool-web
+            name: '@deepseek-ai/dsh-tool-web'
+            config:
+              fetch: true
+              searchTimeoutMs: 60000
+          - id: pi-lite
+            name: 'dsh-pi-lite'
+            config:
+              allow:
+                - read
+                - write
+                - edit
+                - bash
+                - skill
+                - read_image
+                - web_search
+                - web_fetch
+              maxToolCallsPerTurn: 40
+              repeatLimit: 3
+              taskTimeoutMs: 1800000
+              sessionTimeoutMs: 14400000
+              maxSessionTokens: 2000000
+              searchLimit: 5
+              imageLimit: 10
+              watchdog: cancel-turn

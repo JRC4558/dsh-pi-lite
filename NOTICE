@@ -1,0 +1,30 @@
+dsh-pi-lite
+Copyright 2026 trigpage
+Licensed under the MIT License (see LICENSE).
+
+Third-party components
+----------------------
+This package is a DeepSeek Harness bundle. It references the following
+DeepSeek Harness packages through its preset; they are not bundled into this
+repository and remain under their own MIT license:
+
+  @deepseek-ai/dsh-persona
+  @deepseek-ai/dsh-skill-filesystem
+  @deepseek-ai/dsh-tool-bash
+  @deepseek-ai/dsh-tool-fs
+  @deepseek-ai/dsh-tool-skill
+  @deepseek-ai/dsh-tool-web
+
+Build and test tooling (not distributed in the published tarball):
+
+  typescript  - Apache License 2.0
+  vitest      - MIT License
+  @types/node - MIT License
+
+Runtime dependency:
+
+  schemastery - MIT License
+
+No source code from another DeepSeek Harness bundle is copied into this
+project. The policy hooks in src/index.ts are a small, independent
+implementation of the budgets and watchdog requirements.

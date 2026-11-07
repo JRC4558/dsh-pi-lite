@@ -1,0 +1,59 @@
+{
+  "name": "dsh-pi-lite",
+  "version": "0.1.0",
+  "description": "A minimal Pi-like mode for DeepSeek Harness: standard tools only, timeout watchdog, tool allow-list, budgets, skill auto-load, and bounded image/search quotas.",
+  "license": "MIT",
+  "type": "module",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/**/*.js",
+    "lib/**/*.d.ts",
+    "cordis.patch.yml",
+    "skills/**/*.md",
+    "scripts/install-skill.mjs",
+    "README.md",
+    "README.zh.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "prepack": "npm run build",
+    "postinstall": "node scripts/install-skill.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": [
+        "./cordis.patch.yml"
+      ]
+    }
+  },
+  "dependencies": {
+    "schemastery": "^3.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=22.19"
+  },
+  "author": "trigpage",
+  "keywords": [
+    "deepseek-harness",
+    "pi",
+    "agent-mode",
+    "bundle"
+  ]
+}
